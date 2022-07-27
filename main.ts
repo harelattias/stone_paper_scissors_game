@@ -1,4 +1,10 @@
-input.onGesture(Gesture.Shake, function () {
+input.onSound(DetectedSound.Loud, function () {
+    basic.showNumber(3)
+    basic.pause(500)
+    basic.showNumber(2)
+    basic.pause(500)
+    basic.showNumber(1)
+    basic.pause(500)
     gg1 = randint(1, 3)
     if (gg1 == 1) {
         basic.showLeds(`
@@ -28,12 +34,6 @@ input.onGesture(Gesture.Shake, function () {
         }
     }
 })
-input.onButtonPressed(Button.B, function () {
-    basic.pause(1500)
-    basic.showNumber(input.temperature())
-    input.calibrateCompass()
-    basic.showArrow(ArrowNames.North)
-})
 let gg1 = 0
 basic.showLeds(`
     . . . . .
@@ -43,9 +43,13 @@ basic.showLeds(`
     # . # . #
     `)
 music.playMelody("- - - C5 B A B C5 ", 120)
-basic.forever(function () {
-	
-})
-loops.everyInterval(20000, function () {
-	
-})
+basic.pause(100)
+basic.showLeds(`
+    . . . . .
+    . . . . .
+    . . . . .
+    . . . . .
+    . . . . .
+    `)
+input.setSoundThreshold(SoundThreshold.Loud, 255)
+input.setSoundThreshold(SoundThreshold.Quiet, 254)
