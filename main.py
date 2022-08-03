@@ -23,15 +23,14 @@ def on_sound_loud():
                         # # . # #
                         # # . # #
         """)
-    else:
-        if gg1 == 3:
-            basic.show_leds("""
-                # # # # #
-                                # # # # #
-                                # # # # #
-                                # # # # #
-                                # # # # #
-            """)
+    elif gg1 == 3:
+        basic.show_leds("""
+            # # # # #
+                        # # # # #
+                        # # # # #
+                        # # # # #
+                        # # # # #
+        """)
 input.on_sound(DetectedSound.LOUD, on_sound_loud)
 
 gg1 = 0
@@ -53,3 +52,14 @@ basic.show_leds("""
 """)
 input.set_sound_threshold(SoundThreshold.LOUD, 255)
 input.set_sound_threshold(SoundThreshold.QUIET, 254)
+
+led.set_brightness(128)
+
+def on_forever():
+    if input.light_level() < 70:
+        led.set_brightness(205)
+    elif input.light_level() > 205:
+        led.set_brightness(50)
+    else:
+        led.set_brightness(103)
+basic.forever(on_forever)
